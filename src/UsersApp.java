@@ -3,6 +3,7 @@ import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.util.Collections;
+import java.io.PrintWriter;
 public class UsersApp {
     public static void main(String[] args) throws FileNotFoundException{
         ArrayList<User> users=new ArrayList<User>();
@@ -18,17 +19,20 @@ public class UsersApp {
                 User user=new User(parts[0],parts[1]);
                 users.add(user);
             } catch (IllegalArgumentException e) {
-                System.out.println(line);
-                System.out.println(e.getMessage());
+                System.out.println(line+" "+e.getMessage());
             }
 
         }
         reader.close();
+        PrintWriter writer=new PrintWriter("output.txt");
+        
         Collections.sort(users, (u1, u2) -> u1.getName().compareTo(u2.getName()));
 
         for(User user:users){
+            writer.println(user.getName()+" "+user.getPassword());
             System.out.println(user.getName()+" "+user.getPassword());
         }
+        writer.close();
 
     }
 
