@@ -30,7 +30,6 @@ public class UsersApp {
 
         for(User user:users){
             writer.println(user.getName()+" "+user.getPassword());
-            System.out.println(user.getName()+" "+user.getPassword());
         }
         writer.close();
 
